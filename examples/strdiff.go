@@ -7,7 +7,7 @@ import (
 	"os"
 	"unicode/utf8"
 
-	"github.com/cubicdaiya/gonp"
+	"github.com/quenbyako/gonp"
 )
 
 func main() {

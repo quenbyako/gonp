@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/cubicdaiya/gonp"
+	"github.com/quenbyako/gonp"
 )
 
 func equalsStringSlice(a, b []string) bool {

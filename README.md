@@ -1,4 +1,4 @@
-![workflow status](https://github.com/cubicdaiya/gonp/actions/workflows/go.yml/badge.svg)
+![workflow status](https://github.com/quenbyako/gonp/actions/workflows/go.yml/badge.svg)
 
 # gonp
 

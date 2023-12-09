@@ -5,9 +5,13 @@ package gonp
 
 import (
 	"bytes"
+	"cmp"
 	"fmt"
 	"io"
 )
+
+// SesType is manipulaton type
+type SesType int
 
 const (
 	// SesDelete is manipulaton type of deleting element in SES
@@ -23,24 +27,14 @@ const (
 	DefaultRouteSize = 2000000
 )
 
-// SesType is manipulaton type
-type SesType int
-
 // Point is coordinate in edit graph
-type Point struct {
-	x, y int
-}
+type Point struct{ x, y int }
 
 // PointWithRoute is coordinate in edit graph attached route
-type PointWithRoute struct {
-	x, y, r int
-}
+type PointWithRoute struct{ x, y, r int }
 
 // Type constraints for element in SES
-type Elem interface {
-	// int32 overlaps rune
-	~rune | ~string | ~byte | ~int | ~int8 | ~int16 | ~int64 | ~float32 | ~float64
-}
+type Elem = any
 
 // SesElem is element of SES
 type SesElem[T Elem] struct {
@@ -48,6 +42,21 @@ type SesElem[T Elem] struct {
 	t    SesType
 	aIdx int
 	bIdx int
+}
+
+func (e SesElem[T]) Cmp(b SesElem[T], c func(T, T) int) int {
+	for _, v := range []int{
+		c(e.e, b.e),
+		cmp.Compare(e.t, b.t),
+		cmp.Compare(e.aIdx, b.aIdx),
+		cmp.Compare(e.bIdx, b.bIdx),
+	} {
+		if v != 0 {
+			return v
+		}
+	}
+
+	return 0
 }
 
 // Diff is context for calculating difference between a and b
@@ -64,10 +73,13 @@ type Diff[T Elem] struct {
 	pointWithRoute []PointWithRoute
 	contextSize    int
 	routeSize      int
+	cmp            func(T, T) int
 }
 
-// New is initializer of Diff
-func New[T Elem](a, b []T) *Diff[T] {
+func New[T cmp.Ordered](a, b []T) *Diff[T] { return NewCmp(a, b, cmp.Compare) }
+
+// NewCmp is initializer of Diff
+func NewCmp[T any](a, b []T, cmp func(T, T) int) *Diff[T] {
 	diff := new(Diff[T])
 	m, n := len(a), len(b)
 	reverse := false
@@ -83,6 +95,7 @@ func New[T Elem](a, b []T) *Diff[T] {
 	diff.onlyEd = false
 	diff.contextSize = DefaultContextSize
 	diff.routeSize = DefaultRouteSize
+	diff.cmp = cmp
 	return diff
 }
 
@@ -211,7 +224,7 @@ func (diff *Diff[T]) snake(k, p, pp, offset int) int {
 	y := max(p, pp)
 	x := y - k
 
-	for x < diff.m && y < diff.n && diff.a[x] == diff.b[y] {
+	for x < diff.m && y < diff.n && diff.cmp(diff.a[x], diff.b[y]) == 0 {
 		x++
 		y++
 	}

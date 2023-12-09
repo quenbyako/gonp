@@ -1,3 +1,3 @@
-module github.com/cubicdaiya/gonp
+module github.com/quenbyako/gonp
 
-go 1.18
+go 1.21
