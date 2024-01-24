@@ -62,18 +62,18 @@ func TestStringDiff(t *testing.T) {
 			ed:   2,
 			lcs:  "ab",
 			ses: []SesElem[rune]{
-				{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: 'b', t: SesCommon, aIdx: 2, bIdx: 2},
-				{e: 'c', t: SesDelete, aIdx: 3, bIdx: 0},
-				{e: 'd', t: SesAdd, aIdx: 0, bIdx: 3},
+				{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 2},
+				{elem: 'c', typ: SesDelete, aIdx: 3, bIdx: 0},
+				{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 3},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 3, c: 1, d: 3,
 					changes: []SesElem[rune]{
-						{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-						{e: 'b', t: SesCommon, aIdx: 2, bIdx: 2},
-						{e: 'c', t: SesDelete, aIdx: 3, bIdx: 0},
-						{e: 'd', t: SesAdd, aIdx: 0, bIdx: 3},
+						{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+						{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 2},
+						{elem: 'c', typ: SesDelete, aIdx: 3, bIdx: 0},
+						{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 3},
 					},
 				},
 			},
@@ -85,28 +85,28 @@ func TestStringDiff(t *testing.T) {
 			ed:   6,
 			lcs:  "acf",
 			ses: []SesElem[rune]{
-				{e: 'd', t: SesAdd, aIdx: 0, bIdx: 1},
-				{e: 'a', t: SesCommon, aIdx: 1, bIdx: 2},
-				{e: 'b', t: SesDelete, aIdx: 2, bIdx: 0},
-				{e: 'c', t: SesCommon, aIdx: 3, bIdx: 3},
-				{e: 'd', t: SesDelete, aIdx: 4, bIdx: 0},
-				{e: 'e', t: SesDelete, aIdx: 5, bIdx: 0},
-				{e: 'f', t: SesCommon, aIdx: 6, bIdx: 4},
-				{e: 'e', t: SesAdd, aIdx: 0, bIdx: 5},
-				{e: 'a', t: SesAdd, aIdx: 0, bIdx: 6},
+				{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 1},
+				{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 2},
+				{elem: 'b', typ: SesDelete, aIdx: 2, bIdx: 0},
+				{elem: 'c', typ: SesCommon, aIdx: 3, bIdx: 3},
+				{elem: 'd', typ: SesDelete, aIdx: 4, bIdx: 0},
+				{elem: 'e', typ: SesDelete, aIdx: 5, bIdx: 0},
+				{elem: 'f', typ: SesCommon, aIdx: 6, bIdx: 4},
+				{elem: 'e', typ: SesAdd, aIdx: 0, bIdx: 5},
+				{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 6},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 6, c: 1, d: 6,
 					changes: []SesElem[rune]{
-						{e: 'd', t: SesAdd, aIdx: 0, bIdx: 1},
-						{e: 'a', t: SesCommon, aIdx: 1, bIdx: 2},
-						{e: 'b', t: SesDelete, aIdx: 2, bIdx: 0},
-						{e: 'c', t: SesCommon, aIdx: 3, bIdx: 3},
-						{e: 'd', t: SesDelete, aIdx: 4, bIdx: 0},
-						{e: 'e', t: SesDelete, aIdx: 5, bIdx: 0},
-						{e: 'f', t: SesCommon, aIdx: 6, bIdx: 4},
-						{e: 'e', t: SesAdd, aIdx: 0, bIdx: 5},
-						{e: 'a', t: SesAdd, aIdx: 0, bIdx: 6},
+						{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 1},
+						{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 2},
+						{elem: 'b', typ: SesDelete, aIdx: 2, bIdx: 0},
+						{elem: 'c', typ: SesCommon, aIdx: 3, bIdx: 3},
+						{elem: 'd', typ: SesDelete, aIdx: 4, bIdx: 0},
+						{elem: 'e', typ: SesDelete, aIdx: 5, bIdx: 0},
+						{elem: 'f', typ: SesCommon, aIdx: 6, bIdx: 4},
+						{elem: 'e', typ: SesAdd, aIdx: 0, bIdx: 5},
+						{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 6},
 					},
 				},
 			},
@@ -118,38 +118,38 @@ func TestStringDiff(t *testing.T) {
 			ed:   6,
 			lcs:  "acbdabed",
 			ses: []SesElem[rune]{
-				{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: 'c', t: SesCommon, aIdx: 2, bIdx: 2},
-				{e: 'e', t: SesAdd, aIdx: 0, bIdx: 3},
-				{e: 'b', t: SesCommon, aIdx: 3, bIdx: 4},
-				{e: 'd', t: SesCommon, aIdx: 4, bIdx: 5},
-				{e: 'e', t: SesDelete, aIdx: 5, bIdx: 0},
-				{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
-				{e: 'c', t: SesDelete, aIdx: 7, bIdx: 0},
-				{e: 'b', t: SesCommon, aIdx: 8, bIdx: 7},
-				{e: 'b', t: SesAdd, aIdx: 0, bIdx: 8},
-				{e: 'a', t: SesAdd, aIdx: 0, bIdx: 9},
-				{e: 'b', t: SesAdd, aIdx: 0, bIdx: 10},
-				{e: 'e', t: SesCommon, aIdx: 9, bIdx: 11},
-				{e: 'd', t: SesCommon, aIdx: 10, bIdx: 12},
+				{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: 'c', typ: SesCommon, aIdx: 2, bIdx: 2},
+				{elem: 'e', typ: SesAdd, aIdx: 0, bIdx: 3},
+				{elem: 'b', typ: SesCommon, aIdx: 3, bIdx: 4},
+				{elem: 'd', typ: SesCommon, aIdx: 4, bIdx: 5},
+				{elem: 'e', typ: SesDelete, aIdx: 5, bIdx: 0},
+				{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
+				{elem: 'c', typ: SesDelete, aIdx: 7, bIdx: 0},
+				{elem: 'b', typ: SesCommon, aIdx: 8, bIdx: 7},
+				{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 8},
+				{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 9},
+				{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 10},
+				{elem: 'e', typ: SesCommon, aIdx: 9, bIdx: 11},
+				{elem: 'd', typ: SesCommon, aIdx: 10, bIdx: 12},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 10, c: 1, d: 12,
 					changes: []SesElem[rune]{
-						{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-						{e: 'c', t: SesCommon, aIdx: 2, bIdx: 2},
-						{e: 'e', t: SesAdd, aIdx: 0, bIdx: 3},
-						{e: 'b', t: SesCommon, aIdx: 3, bIdx: 4},
-						{e: 'd', t: SesCommon, aIdx: 4, bIdx: 5},
-						{e: 'e', t: SesDelete, aIdx: 5, bIdx: 0},
-						{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
-						{e: 'c', t: SesDelete, aIdx: 7, bIdx: 0},
-						{e: 'b', t: SesCommon, aIdx: 8, bIdx: 7},
-						{e: 'b', t: SesAdd, aIdx: 0, bIdx: 8},
-						{e: 'a', t: SesAdd, aIdx: 0, bIdx: 9},
-						{e: 'b', t: SesAdd, aIdx: 0, bIdx: 10},
-						{e: 'e', t: SesCommon, aIdx: 9, bIdx: 11},
-						{e: 'd', t: SesCommon, aIdx: 10, bIdx: 12},
+						{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+						{elem: 'c', typ: SesCommon, aIdx: 2, bIdx: 2},
+						{elem: 'e', typ: SesAdd, aIdx: 0, bIdx: 3},
+						{elem: 'b', typ: SesCommon, aIdx: 3, bIdx: 4},
+						{elem: 'd', typ: SesCommon, aIdx: 4, bIdx: 5},
+						{elem: 'e', typ: SesDelete, aIdx: 5, bIdx: 0},
+						{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
+						{elem: 'c', typ: SesDelete, aIdx: 7, bIdx: 0},
+						{elem: 'b', typ: SesCommon, aIdx: 8, bIdx: 7},
+						{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 8},
+						{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 9},
+						{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 10},
+						{elem: 'e', typ: SesCommon, aIdx: 9, bIdx: 11},
+						{elem: 'd', typ: SesCommon, aIdx: 10, bIdx: 12},
 					},
 				},
 			},
@@ -161,26 +161,26 @@ func TestStringDiff(t *testing.T) {
 			ed:   4,
 			lcs:  "bcba",
 			ses: []SesElem[rune]{
-				{e: 'a', t: SesDelete, aIdx: 1, bIdx: 0},
-				{e: 'b', t: SesCommon, aIdx: 2, bIdx: 1},
-				{e: 'd', t: SesAdd, aIdx: 0, bIdx: 2},
-				{e: 'c', t: SesCommon, aIdx: 3, bIdx: 3},
-				{e: 'a', t: SesAdd, aIdx: 0, bIdx: 4},
-				{e: 'b', t: SesCommon, aIdx: 4, bIdx: 5},
-				{e: 'd', t: SesDelete, aIdx: 5, bIdx: 0},
-				{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
+				{elem: 'a', typ: SesDelete, aIdx: 1, bIdx: 0},
+				{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 1},
+				{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 2},
+				{elem: 'c', typ: SesCommon, aIdx: 3, bIdx: 3},
+				{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 4},
+				{elem: 'b', typ: SesCommon, aIdx: 4, bIdx: 5},
+				{elem: 'd', typ: SesDelete, aIdx: 5, bIdx: 0},
+				{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 6, c: 1, d: 6,
 					changes: []SesElem[rune]{
-						{e: 'a', t: SesDelete, aIdx: 1, bIdx: 0},
-						{e: 'b', t: SesCommon, aIdx: 2, bIdx: 1},
-						{e: 'd', t: SesAdd, aIdx: 0, bIdx: 2},
-						{e: 'c', t: SesCommon, aIdx: 3, bIdx: 3},
-						{e: 'a', t: SesAdd, aIdx: 0, bIdx: 4},
-						{e: 'b', t: SesCommon, aIdx: 4, bIdx: 5},
-						{e: 'd', t: SesDelete, aIdx: 5, bIdx: 0},
-						{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
+						{elem: 'a', typ: SesDelete, aIdx: 1, bIdx: 0},
+						{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 1},
+						{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 2},
+						{elem: 'c', typ: SesCommon, aIdx: 3, bIdx: 3},
+						{elem: 'a', typ: SesAdd, aIdx: 0, bIdx: 4},
+						{elem: 'b', typ: SesCommon, aIdx: 4, bIdx: 5},
+						{elem: 'd', typ: SesDelete, aIdx: 5, bIdx: 0},
+						{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
 					},
 				},
 			},
@@ -192,21 +192,21 @@ func TestStringDiff(t *testing.T) {
 			ed:   1,
 			lcs:  "bokko",
 			ses: []SesElem[rune]{
-				{e: 'b', t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: 'o', t: SesCommon, aIdx: 2, bIdx: 2},
-				{e: 'k', t: SesCommon, aIdx: 3, bIdx: 3},
-				{e: 'k', t: SesCommon, aIdx: 4, bIdx: 4},
-				{e: 'k', t: SesAdd, aIdx: 0, bIdx: 5},
-				{e: 'o', t: SesCommon, aIdx: 5, bIdx: 6},
+				{elem: 'b', typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: 'o', typ: SesCommon, aIdx: 2, bIdx: 2},
+				{elem: 'k', typ: SesCommon, aIdx: 3, bIdx: 3},
+				{elem: 'k', typ: SesCommon, aIdx: 4, bIdx: 4},
+				{elem: 'k', typ: SesAdd, aIdx: 0, bIdx: 5},
+				{elem: 'o', typ: SesCommon, aIdx: 5, bIdx: 6},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 2, b: 4, c: 2, d: 5,
 					changes: []SesElem[rune]{
-						{e: 'o', t: SesCommon, aIdx: 2, bIdx: 2},
-						{e: 'k', t: SesCommon, aIdx: 3, bIdx: 3},
-						{e: 'k', t: SesCommon, aIdx: 4, bIdx: 4},
-						{e: 'k', t: SesAdd, aIdx: 0, bIdx: 5},
-						{e: 'o', t: SesCommon, aIdx: 5, bIdx: 6},
+						{elem: 'o', typ: SesCommon, aIdx: 2, bIdx: 2},
+						{elem: 'k', typ: SesCommon, aIdx: 3, bIdx: 3},
+						{elem: 'k', typ: SesCommon, aIdx: 4, bIdx: 4},
+						{elem: 'k', typ: SesAdd, aIdx: 0, bIdx: 5},
+						{elem: 'o', typ: SesCommon, aIdx: 5, bIdx: 6},
 					},
 				},
 			},
@@ -218,39 +218,39 @@ func TestStringDiff(t *testing.T) {
 			ed:   4,
 			lcs:  "abaaaaaab",
 			ses: []SesElem[rune]{
-				{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: 'b', t: SesCommon, aIdx: 2, bIdx: 2},
-				{e: 'c', t: SesDelete, aIdx: 3, bIdx: 0},
-				{e: 'd', t: SesAdd, aIdx: 0, bIdx: 3},
-				{e: 'a', t: SesCommon, aIdx: 4, bIdx: 4},
-				{e: 'a', t: SesCommon, aIdx: 5, bIdx: 5},
-				{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
-				{e: 'a', t: SesCommon, aIdx: 7, bIdx: 7},
-				{e: 'a', t: SesCommon, aIdx: 8, bIdx: 8},
-				{e: 'a', t: SesCommon, aIdx: 9, bIdx: 9},
-				{e: 'b', t: SesCommon, aIdx: 10, bIdx: 10},
-				{e: 'd', t: SesDelete, aIdx: 11, bIdx: 0},
-				{e: 'c', t: SesAdd, aIdx: 0, bIdx: 11},
+				{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 2},
+				{elem: 'c', typ: SesDelete, aIdx: 3, bIdx: 0},
+				{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 3},
+				{elem: 'a', typ: SesCommon, aIdx: 4, bIdx: 4},
+				{elem: 'a', typ: SesCommon, aIdx: 5, bIdx: 5},
+				{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
+				{elem: 'a', typ: SesCommon, aIdx: 7, bIdx: 7},
+				{elem: 'a', typ: SesCommon, aIdx: 8, bIdx: 8},
+				{elem: 'a', typ: SesCommon, aIdx: 9, bIdx: 9},
+				{elem: 'b', typ: SesCommon, aIdx: 10, bIdx: 10},
+				{elem: 'd', typ: SesDelete, aIdx: 11, bIdx: 0},
+				{elem: 'c', typ: SesAdd, aIdx: 0, bIdx: 11},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 6, c: 1, d: 6,
 					changes: []SesElem[rune]{
-						{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-						{e: 'b', t: SesCommon, aIdx: 2, bIdx: 2},
-						{e: 'c', t: SesDelete, aIdx: 3, bIdx: 0},
-						{e: 'd', t: SesAdd, aIdx: 0, bIdx: 3},
-						{e: 'a', t: SesCommon, aIdx: 4, bIdx: 4},
-						{e: 'a', t: SesCommon, aIdx: 5, bIdx: 5},
-						{e: 'a', t: SesCommon, aIdx: 6, bIdx: 6},
+						{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+						{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 2},
+						{elem: 'c', typ: SesDelete, aIdx: 3, bIdx: 0},
+						{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 3},
+						{elem: 'a', typ: SesCommon, aIdx: 4, bIdx: 4},
+						{elem: 'a', typ: SesCommon, aIdx: 5, bIdx: 5},
+						{elem: 'a', typ: SesCommon, aIdx: 6, bIdx: 6},
 					},
 				},
 				{a: 8, b: 4, c: 8, d: 4,
 					changes: []SesElem[rune]{
-						{e: 'a', t: SesCommon, aIdx: 8, bIdx: 8},
-						{e: 'a', t: SesCommon, aIdx: 9, bIdx: 9},
-						{e: 'b', t: SesCommon, aIdx: 10, bIdx: 10},
-						{e: 'd', t: SesDelete, aIdx: 11, bIdx: 0},
-						{e: 'c', t: SesAdd, aIdx: 0, bIdx: 11},
+						{elem: 'a', typ: SesCommon, aIdx: 8, bIdx: 8},
+						{elem: 'a', typ: SesCommon, aIdx: 9, bIdx: 9},
+						{elem: 'b', typ: SesCommon, aIdx: 10, bIdx: 10},
+						{elem: 'd', typ: SesDelete, aIdx: 11, bIdx: 0},
+						{elem: 'c', typ: SesAdd, aIdx: 0, bIdx: 11},
 					},
 				},
 			},
@@ -271,11 +271,11 @@ func TestStringDiff(t *testing.T) {
 			ed:   1,
 			lcs:  "",
 			ses: []SesElem[rune]{
-				{e: 'a', t: SesDelete, aIdx: 1, bIdx: 0},
+				{elem: 'a', typ: SesDelete, aIdx: 1, bIdx: 0},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 1, c: 0, d: 0, changes: []SesElem[rune]{
-					{e: 'a', t: SesDelete, aIdx: 1, bIdx: 0},
+					{elem: 'a', typ: SesDelete, aIdx: 1, bIdx: 0},
 				},
 				},
 			},
@@ -287,11 +287,11 @@ func TestStringDiff(t *testing.T) {
 			ed:   1,
 			lcs:  "",
 			ses: []SesElem[rune]{
-				{e: 'b', t: SesAdd, aIdx: 0, bIdx: 1},
+				{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 1},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 0, b: 0, c: 1, d: 1, changes: []SesElem[rune]{
-					{e: 'b', t: SesAdd, aIdx: 0, bIdx: 1},
+					{elem: 'b', typ: SesAdd, aIdx: 0, bIdx: 1},
 				},
 				},
 			},
@@ -303,19 +303,19 @@ func TestStringDiff(t *testing.T) {
 			ed:   2,
 			lcs:  "久保彦",
 			ses: []SesElem[rune]{
-				{e: '久', t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: '保', t: SesCommon, aIdx: 2, bIdx: 2},
-				{e: '竜', t: SesDelete, aIdx: 3, bIdx: 0},
-				{e: '達', t: SesAdd, aIdx: 0, bIdx: 3},
-				{e: '彦', t: SesCommon, aIdx: 4, bIdx: 4},
+				{elem: '久', typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: '保', typ: SesCommon, aIdx: 2, bIdx: 2},
+				{elem: '竜', typ: SesDelete, aIdx: 3, bIdx: 0},
+				{elem: '達', typ: SesAdd, aIdx: 0, bIdx: 3},
+				{elem: '彦', typ: SesCommon, aIdx: 4, bIdx: 4},
 			},
 			uniHunks: []UniHunk[rune]{
 				{a: 1, b: 4, c: 1, d: 4, changes: []SesElem[rune]{
-					{e: '久', t: SesCommon, aIdx: 1, bIdx: 1},
-					{e: '保', t: SesCommon, aIdx: 2, bIdx: 2},
-					{e: '竜', t: SesDelete, aIdx: 3, bIdx: 0},
-					{e: '達', t: SesAdd, aIdx: 0, bIdx: 3},
-					{e: '彦', t: SesCommon, aIdx: 4, bIdx: 4},
+					{elem: '久', typ: SesCommon, aIdx: 1, bIdx: 1},
+					{elem: '保', typ: SesCommon, aIdx: 2, bIdx: 2},
+					{elem: '竜', typ: SesDelete, aIdx: 3, bIdx: 0},
+					{elem: '達', typ: SesAdd, aIdx: 0, bIdx: 3},
+					{elem: '彦', typ: SesCommon, aIdx: 4, bIdx: 4},
 				},
 				},
 			},
@@ -325,7 +325,7 @@ func TestStringDiff(t *testing.T) {
 	for _, tt := range tests {
 		diff := New([]rune(tt.a), []rune(tt.b))
 		diff.Compose()
-		ed := diff.Editdistance()
+		ed := diff.EditDistance()
 		lcs := string(diff.Lcs())
 		ses := diff.Ses()
 		uniHunks := diff.UnifiedHunks()
@@ -346,7 +346,6 @@ func TestStringDiff(t *testing.T) {
 }
 
 func TestSliceDiff(t *testing.T) {
-
 	tests := []struct {
 		name     string
 		a        []int
@@ -363,18 +362,18 @@ func TestSliceDiff(t *testing.T) {
 			ed:   2,
 			lcs:  []int{1, 3},
 			ses: []SesElem[int]{
-				{e: 1, t: SesCommon, aIdx: 1, bIdx: 1},
-				{e: 2, t: SesDelete, aIdx: 2, bIdx: 0},
-				{e: 5, t: SesAdd, aIdx: 0, bIdx: 2},
-				{e: 3, t: SesCommon, aIdx: 3, bIdx: 3},
+				{elem: 1, typ: SesCommon, aIdx: 1, bIdx: 1},
+				{elem: 2, typ: SesDelete, aIdx: 2, bIdx: 0},
+				{elem: 5, typ: SesAdd, aIdx: 0, bIdx: 2},
+				{elem: 3, typ: SesCommon, aIdx: 3, bIdx: 3},
 			},
 			uniHunks: []UniHunk[int]{
 				{a: 1, b: 3, c: 1, d: 3,
 					changes: []SesElem[int]{
-						{e: 1, t: SesCommon, aIdx: 1, bIdx: 1},
-						{e: 2, t: SesDelete, aIdx: 2, bIdx: 0},
-						{e: 5, t: SesAdd, aIdx: 0, bIdx: 2},
-						{e: 3, t: SesCommon, aIdx: 3, bIdx: 3},
+						{elem: 1, typ: SesCommon, aIdx: 1, bIdx: 1},
+						{elem: 2, typ: SesDelete, aIdx: 2, bIdx: 0},
+						{elem: 5, typ: SesAdd, aIdx: 0, bIdx: 2},
+						{elem: 3, typ: SesCommon, aIdx: 3, bIdx: 3},
 					},
 				},
 			},
@@ -393,7 +392,7 @@ func TestSliceDiff(t *testing.T) {
 	for _, tt := range tests {
 		diff := New(tt.a, tt.b)
 		diff.Compose()
-		ed := diff.Editdistance()
+		ed := diff.EditDistance()
 		lcs := diff.Lcs()
 		ses := diff.Ses()
 		uniHunks := diff.UnifiedHunks()
@@ -423,14 +422,14 @@ func TestPluralDiff(t *testing.T) {
 	lcs := string(diff.Lcs())
 	sesActual := diff.Ses()
 	sesExpected := []SesElem[rune]{
-		{e: 'a', t: SesCommon, aIdx: 1, bIdx: 1},
-		{e: 'b', t: SesCommon, aIdx: 2, bIdx: 2},
-		{e: 'c', t: SesDelete, aIdx: 3, bIdx: 0},
-		{e: 'd', t: SesAdd, aIdx: 0, bIdx: 3},
+		{elem: 'a', typ: SesCommon, aIdx: 1, bIdx: 1},
+		{elem: 'b', typ: SesCommon, aIdx: 2, bIdx: 2},
+		{elem: 'c', typ: SesDelete, aIdx: 3, bIdx: 0},
+		{elem: 'd', typ: SesAdd, aIdx: 0, bIdx: 3},
 	}
 
-	if diff.Editdistance() != 2 {
-		t.Fatalf("want: 2, actual: %v", diff.Editdistance())
+	if diff.EditDistance() != 2 {
+		t.Fatalf("want: 2, actual: %v", diff.EditDistance())
 	}
 
 	if lcs != "ab" {
@@ -451,7 +450,7 @@ func TestPluralDiff(t *testing.T) {
 	}
 }
 
-func TestDiffOnlyEditdistance(t *testing.T) {
+func TestDiffOnlyEditDistance(t *testing.T) {
 	a := []rune("abc")
 	b := []rune("abd")
 	diff := New(a, b)
@@ -463,8 +462,8 @@ func TestDiffOnlyEditdistance(t *testing.T) {
 	uniHunksActual := diff.UnifiedHunks()
 	uniHunksExpected := []UniHunk[rune]{}
 
-	if diff.Editdistance() != 2 {
-		t.Fatalf("want: 2, actual: %v", diff.Editdistance())
+	if diff.EditDistance() != 2 {
+		t.Fatalf("want: 2, actual: %v", diff.EditDistance())
 	}
 
 	if lcs != "" {
@@ -486,8 +485,8 @@ func TestDiffPluralSubsequence(t *testing.T) {
 	diff := New(a, b)
 	diff.SetRouteSize(2) // dividing sequences forcibly
 	diff.Compose()
-	if diff.Editdistance() != 4 {
-		t.Fatalf("want: 4, actual: %d", diff.Editdistance())
+	if diff.EditDistance() != 4 {
+		t.Fatalf("want: 4, actual: %d", diff.EditDistance())
 	}
 }
 
@@ -512,7 +511,7 @@ func TestDiffSprintUniHunks(t *testing.T) {
 	b := []string{"a", "1", "c"}
 	diff := New(a, b)
 	diff.Compose()
-	actual := diff.SprintUniHunks(diff.UnifiedHunks())
+	actual := SprintUniHunks(diff.UnifiedHunks())
 	expected := `@@ -1,3 +1,3 @@
  a
 -b

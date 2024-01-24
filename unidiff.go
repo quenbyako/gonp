@@ -34,18 +34,18 @@ func (uniHunk *UniHunk[T]) SprintDiffRange() string {
 
 // PrintUniHunks prints unified format difference between and b
 func (diff *Diff[T]) PrintUniHunks(uniHunks []UniHunk[T]) {
-	fmt.Print(diff.SprintUniHunks(uniHunks))
+	fmt.Print(SprintUniHunks(uniHunks))
 }
 
 // SprintUniHunks returns string about unified format difference between a and b
-func (diff *Diff[T]) SprintUniHunks(uniHunks []UniHunk[T]) string {
+func SprintUniHunks[T any](uniHunks []UniHunk[T]) string {
 	var buf bytes.Buffer
-	diff.FprintUniHunks(&buf, uniHunks)
+	FprintUniHunks(&buf, uniHunks)
 	return buf.String()
 }
 
 // FprintUniHunks emit about unified format difference between a and b to w
-func (diff *Diff[T]) FprintUniHunks(w io.Writer, uniHunks []UniHunk[T]) {
+func FprintUniHunks[T any](w io.Writer, uniHunks []UniHunk[T]) {
 	for _, uniHunk := range uniHunks {
 		fmt.Fprintf(w, uniHunk.SprintDiffRange())
 		for _, e := range uniHunk.GetChanges() {
@@ -73,7 +73,7 @@ func (diff *Diff[T]) UnifiedHunks() []UniHunk[T] {
 	b, d := 0, 0
 
 	for i, e := range diff.ses {
-		switch e.t {
+		switch e.typ {
 		case SesDelete:
 			b += 1
 			fallthrough
@@ -88,7 +88,7 @@ func (diff *Diff[T]) UnifiedHunks() []UniHunk[T] {
 			case PhaseBehindDiff:
 				// do nothing
 			}
-			if e.t == SesAdd {
+			if e.typ == SesAdd {
 				d += 1
 			}
 		case SesCommon:

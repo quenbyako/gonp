@@ -18,17 +18,17 @@ func (diff *Diff[T]) Patch(seq []T) []T {
 
 	le := l.Front()
 	for _, e := range diff.ses {
-		switch e.t {
+		switch e.typ {
 		case SesDelete:
 			lea := le.Next()
 			l.Remove(le)
 			le = lea
 		case SesAdd:
 			if le == nil {
-				le = l.PushBack(e.e)
+				le = l.PushBack(e.elem)
 				le = le.Next()
 			} else {
-				l.InsertBefore(e.e, le)
+				l.InsertBefore(e.elem, le)
 			}
 		case SesCommon:
 			le = le.Next()
@@ -77,17 +77,17 @@ func (diff *Diff[T]) UniPatch(seq []T, uniHunks []UniHunk[T]) ([]T, error) {
 		}
 
 		for _, e := range h.changes {
-			switch e.t {
+			switch e.typ {
 			case SesDelete:
 				lea := le.Next()
 				l.Remove(le)
 				le = lea
 			case SesAdd:
 				if le == nil {
-					le = l.PushBack(e.e)
+					le = l.PushBack(e.elem)
 					le = le.Next()
 				} else {
-					l.InsertBefore(e.e, le)
+					l.InsertBefore(e.elem, le)
 				}
 			case SesCommon:
 				le = le.Next()

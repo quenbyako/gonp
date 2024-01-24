@@ -20,7 +20,7 @@ The computational complexity of Wu's O(NP) Algorithm is averagely O(N+PD), in th
 ```go
 diff := gonp.New([]rune("abc"), []rune("abd"))
 diff.Compose()
-ed := diff.Editdistance() // ed is 2
+ed := diff.EditDistance() // ed is 2
 lcs := diff.Lcs() // lcs is "ab"
 
 ses := diff.Ses()
@@ -37,7 +37,7 @@ ses := diff.Ses()
 ```go
 diff := gonp.New([]int{1,2,3}, []int{1,5,3})
 diff.Compose()
-ed := diff.Editdistance() // ed is 2
+ed := diff.EditDistance() // ed is 2
 lcs := diff.Lcs() // lcs is [1,3]
 
 ses := diff.Ses()
@@ -74,7 +74,7 @@ diff.PrintUniHunks(uniHunks)
 $ make strdiff
 go build -o strdiff examples/strdiff.go
 $ ./strdiff abc abd
-Editdistance: 2
+EditDistance: 2
 LCS: ab
 SES:
   a
@@ -90,7 +90,7 @@ $ make intdiff
 go build -o intdiff examples/intdiff.go
 $ ./intdiff
 diff [1 2 3 4 5] [1 2 9 4 5]
-Editdistance: 2
+EditDistance: 2
 LCS: [1 2 4 5]
 SES:
   1
@@ -107,7 +107,7 @@ SES:
 $ make unistrdiff
 go build -o unistrdiff examples/unistrdiff.go
 $ ./unistrdiff abc abd
-Editdistance:2
+EditDistance:2
 LCS:ab
 Unified format difference:
 @@ -1,3 +1,3 @@
@@ -124,7 +124,7 @@ $ make uniintdiff
 go build -o uniintdiff examples/uniintdiff.go
 $ ./uniintdiff
 diff [1 2 3 4 5] [1 2 9 4 5]
-Editdistance: 2
+EditDistance: 2
 LCS: [1 2 4 5]
 Unified format difference:
 @@ -1,5 +1,5 @@
